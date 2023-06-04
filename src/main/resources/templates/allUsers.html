@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Пользователи</title>
+</head>
+<body>
+<h1>Поттероманы</h1>
+<div>
+    <table border="3">
+        <thead>
+        <tr>
+            <th scope="col">Имя</th>
+            <th scope="col">Фамилия</th>
+            <th scope="col">Юзернэйм</th>
+            <th scope="col">Почта</th>
+            <th scope="col">Поменять Поттеромана</th>
+            <th scope="col">Посмотреть Поттеромана</th>
+            <th scope="col">Удалить Поттеромана</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user: ${allUsers}">
+            <td th:text="${user.getName()}">user</td>
+            <td th:text="${user.getLastName()}">user</td>
+            <td th:text="${user.getUserName()}">user</td>
+            <td th:text="${user.getEmail()}">user</td>
+            <td> <button> <a th:href="@{/hello/{id}/editUser(id=${user.getId()})}">Выпить оборотное зелье</a> </button> </td>
+            <td> <button> <a th:href="@{/hello/{id}/showUser(id=${user.getId()})}">Заглянуть в шар прорицаний</a> </button> </td>
+            <td>
+                <form th:method="DELETE" th:action="@{/hello/{id}/delete(id=${user.getId()})}">
+                    <input type="submit" value="Авада-Кедавра"/>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<br>
+<hr/>
+<a href="/hello/newUser"><h3>Создать нового Поттеромана</h3></a>
+<br>
+<hr/>
+<a href="/hello"><h3>Косой переулок</h3></a>
+</body>
+</html>
